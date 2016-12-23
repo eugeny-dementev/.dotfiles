@@ -25,8 +25,6 @@ Plugin 'editorconfig/editorconfig-vim' " editor config B)
 " language syntax pack 70+
 Plugin 'sheerun/vim-polyglot' " js, jsx, coffee, cjsx, ...
 
-Plugin '907th/vim-auto-save'
-
 " javascript improvements
 Plugin 'othree/yajs.vim'
 Plugin 'othree/javascript-libraries-syntax.vim'
@@ -114,6 +112,3 @@ let g:neomake_javascript_enabled_makers = ['eslint']
 
 " autowrite all modifed files always
 set autowriteall
-
-" ======== auto-save ======== 
-let g:auto_save = 1
