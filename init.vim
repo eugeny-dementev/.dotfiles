@@ -9,7 +9,7 @@ call vundle#begin()
 "call vundle#begin('~/some/path/here')
 
 " let Vundle manage Vundle, required
-Plugin 'gmarik/Vundle.vim'
+Plugin 'VundleVim/Vundle.vim'
 
 " color scheme
 " Plugin 'altercation/vim-colors-solarized'
@@ -20,38 +20,23 @@ Plugin 'eugeny-dementev/gruvbox'
 Plugin 'airblade/vim-gitgutter'
 
 " code style
-Plugin 'editorconfig/editorconfig-vim' " editor config :D
+Plugin 'editorconfig/editorconfig-vim' " editor config B)
 
 " language syntax pack 70+
 Plugin 'sheerun/vim-polyglot' " js, jsx, coffee, cjsx, ...
 
 Plugin '907th/vim-auto-save'
-" handlebars syntax highlight
-" Plugin 'mustache/vim-mustache-handlebars'
 
 " javascript improvements
 Plugin 'othree/yajs.vim'
 Plugin 'othree/javascript-libraries-syntax.vim'
-" Plugin 'pangloss/vim-javascript'
-" Plugin 'mxw/vim-jsx'
 
-" Plugin for coffee-script
-" Plugin 'kchmck/vim-coffee-script'
 
 " File navigation
-" Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'wincent/command-t'
-" functionality plugins
-" Plugin 'scrooloose/nerdtree' " NERDTree \m/
-" Plugin 'jistr/vim-nerdtree-tabs' " Same NERDTree in all tabs
-" Plugin 'kien/ctrlp.vim' " Open file explorer
-" Plugin 'rking/ag.vim' " Silver searcher
 
 " Syntax checker (eslint)
-" Plugin 'vim-syntastic/syntastic' " it is to fucking slow
 Plugin 'neomake/neomake'
-
-" Plugin 'Raimondi/delimitMate' " for autobrackets
 
 " The following are examples of different formats supported.
 " Keep Plugin commands between vundle#begin/end.
@@ -97,36 +82,18 @@ set tabstop=2
 set shiftwidth=2
 set expandtab
 
-let g:vim_sftp_configs = {
-\   'admin_dashboard' : {
-\       'upload_on_save'   : 1,
-\       'download_on_open' : 0,
-\       'confirm_downloads': 0,
-\       'confirm_uploads'  : 0,
-\       'local_base_path'  : '/Users/devgen/Projects/firefly/admin-dashboard',
-\       'remote_base_path' : '/home/evgeniy.dementyev/projects/admin-dashboard',
-\       'sftp_command' : 'sftp',
-\       'complete_prompt_regexp' : '100\%',
-\       'host' : 'evgeniy.dementyev@dev.fireflylabs.co'
-\   }
-\}
-
 " ======== gitgutter =========
 set updatetime=250
 let g:gitgutter_sign_column_always = 1
 
 " ======== search =========
 " clear search pattern shortcut
-
 nmap <C-C> :let @/=""<CR>
 " highlights all words found with search pattern
 set hlsearch
 
+" ======== cursor =========
 :let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
-
-" ======== nerdtree ======== 
-" map \e :NERDTreeToggle<CR>
-" map <C-n> :NERDTreeToggle<CR>
 
 " ======== editorconfig ======== 
 let g:EditorConfig_exclude_patterns = ['fugitive://.*']
@@ -134,12 +101,6 @@ let g:EditorConfig_exclude_patterns = ['scp://.*']
 
 " ======== command-t ======== 
 nmap <C-P> :CommandT<CR>
-
-" ======== syntastic ======== 
-let g:syntastic_error_symbol = '❌'
-let g:syntastic_style_error_symbol = '⁉️'
-let g:syntastic_warning_symbol = '⚠️'
-let g:syntastic_style_warning_symbol = '💩'
 
 " ======== neomake ======== 
 autocmd BufWritePost,BufEnter *.js,*.jsx Neomake
@@ -154,25 +115,5 @@ let g:neomake_javascript_enabled_makers = ['eslint']
 " autowrite all modifed files always
 set autowriteall
 
-" gui options
-set autoread
-set guifont=Menlo:h15
-set guioptions-=r
-set guioptions-=R
-set guioptions-=l
-set guioptions-=L
-set backspace=2
-" au BufRead,BufNewFile *.html set filetype=mustache
-
-" Syntastic config
-" set statusline+=%#warningmsg#
-" set statusline+=%{SyntasticStatuslineFlag()}
-" set statusline+=%*
-
-" let g:syntastic_always_populate_loc_list = 1
-" let g:syntastic_auto_loc_list = 1
-" let g:syntastic_check_on_open = 1
-" let g:syntastic_check_on_wq = 0
-
-" Some shortcuts which probably don't cover default shortcuts
-" Save file shortcut
+" ======== auto-save ======== 
+let g:auto_save = 1
