@@ -12,7 +12,6 @@ call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 
 " color scheme
-" Plugin 'altercation/vim-colors-solarized'
 Plugin 'eugeny-dementev/gruvbox'
 " Plugin 'morhetz/gruvbox'
 
