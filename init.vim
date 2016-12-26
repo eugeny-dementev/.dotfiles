@@ -25,7 +25,7 @@ Plugin 'editorconfig/editorconfig-vim' " editor config B)
 Plugin 'sheerun/vim-polyglot' " js, jsx, coffee, cjsx, ...
 
 " javascript improvements
-Plugin 'othree/yajs.vim'
+" Plugin 'othree/yajs.vim'
 Plugin 'othree/javascript-libraries-syntax.vim'
 
 
