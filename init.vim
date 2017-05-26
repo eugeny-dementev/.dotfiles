@@ -75,3 +75,5 @@ let g:neomake_javascript_enabled_makers = ['eslint']
 
 " autowrite all modifed files always
 set autowriteall
+" autoread file changes outside of vim
+set autoread
