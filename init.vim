@@ -9,6 +9,7 @@ Plug 'eugeny-dementev/gruvbox'
 
 " git improvements
 Plug 'airblade/vim-gitgutter'
+Plug 'tpope/vim-fugitive'
 
 " code style
 Plug 'editorconfig/editorconfig-vim' " editor config B)
