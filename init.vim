@@ -61,6 +61,7 @@ let g:EditorConfig_exclude_patterns = ['scp://.*']
 
 " ======== command-t ======== 
 nmap <C-P> :CommandT<CR>
+set wildignore+=*/node_modules
 
 " ======== neomake ======== 
 autocmd BufWritePost,BufEnter *.js,*.jsx Neomake
