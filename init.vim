@@ -40,6 +40,8 @@ set tabstop=2
 set shiftwidth=2
 set expandtab
 
+set ruler
+
 " ======== gitgutter =========
 set updatetime=250
 let g:gitgutter_sign_column_always = 1
