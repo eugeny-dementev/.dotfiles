@@ -23,7 +23,7 @@ Plug 'othree/javascript-libraries-syntax.vim'
 
 " File navigation
 Plug 'wincent/command-t', {
-  \   'do': 'cd ruby/command-t && ruby extconf.rb && make'
+  \   'do': 'cd ruby/command-t/ext/command-t && ruby extconf.rb && make'
   \ }
 
 " Syntax checker (eslint)
