@@ -11,6 +11,9 @@ Plug 'eugeny-dementev/gruvbox'
 Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-fugitive'
 
+" Rust autocomplete
+Plug 'racer-rust/vim-racer'
+
 " code style
 Plug 'editorconfig/editorconfig-vim' " editor config B)
 
@@ -77,3 +80,8 @@ let g:neomake_javascript_enabled_makers = ['eslint']
 set autowriteall
 " autoread file changes outside of vim
 set autoread
+
+" rust autocomplete
+set hidden
+let g:racer_cmd = "~/.cargo/bin/racer"
+let g:racer_experimental_completer = 1
