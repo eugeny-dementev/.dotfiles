@@ -45,6 +45,10 @@ set expandtab
 
 set ruler
 
+" ======== folding ===========
+
+set foldmethod=syntax
+
 " ======== gitgutter =========
 set updatetime=250
 let g:gitgutter_sign_column_always = 1
