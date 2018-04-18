@@ -1,4 +1,4 @@
-set nocompatible              " be iMproved, required
+set nocompatible " be iMproved, required
 filetype on
 
 call plug#begin('~/.local/share/nvim/plugged')
@@ -29,8 +29,19 @@ Plug 'wincent/command-t', {
   \   'do': 'cd ruby/command-t/ext/command-t && ruby extconf.rb && make && gem install neovim && gem install msgpack'
   \ }
 
+" Auto code style formatter
+Plug 'prettier/vim-prettier', {
+  \ 'do': 'npm install',
+  \ 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue', 'jsx'] }
+
 " Syntax checker (eslint)
 Plug 'neomake/neomake'
+
+" Move line up/down
+Plug 'matze/vim-move'
+
+" Emment for html
+Plug 'mattn/emmet-vim'
 
 call plug#end()
 
@@ -45,9 +56,14 @@ set expandtab
 
 set ruler
 
+set cursorline
+set nobackup
+set noswapfile
+
 " ======== folding ===========
 
 set foldmethod=syntax
+set foldlevel=20
 
 " ======== gitgutter =========
 set updatetime=250
@@ -68,20 +84,17 @@ let g:EditorConfig_exclude_patterns = ['scp://.*']
 
 " ======== command-t ======== 
 nmap <C-P> :CommandT<CR>
+let g:CommandTTraverseSCM = 'file'
+
 set wildignore+=*/node_modules
 
 " ======== neomake ======== 
-autocmd BufWritePost,BufEnter *.js,*.jsx Neomake
-let g:neomke_javascript_eslint_maker = {
-    \ 'exe': 'eslint_d',
-    \ 'args': ['-f', 'compact'],
-    \ 'errorformat': '%E%f: line %l\, col %c\, Error - %m,' .
-    \ '%W%f: line %l\, col %c\, Warning - %m'
-    \ }
-let g:neomake_javascript_enabled_makers = ['eslint']
+call neomake#configure#automake('nrwi', 500)
 
 " autowrite all modifed files always
+au BufLeave * silent! wall
 set autowriteall
+
 " autoread file changes outside of vim
 set autoread
 
@@ -90,4 +103,15 @@ set hidden
 let g:racer_cmd = "~/.cargo/bin/racer"
 let g:racer_experimental_completer = 1
 
+" rust lang configurations
 au FileType rust nmap gd <Plug>(rust-def-split)
+
+" prettier configuration
+let g:prettier#exec_cmd_async = 1
+let g:prettier#config#single_quote = 'true'
+let g:prettier#config#arrow_parens = 'always'
+let g:prettier#config#trailing_comma = 'es5'
+let g:prettier#config#bracket_spacing = 'true'
+
+" change vim-move key
+let g:move_key_modifier = 'C'
