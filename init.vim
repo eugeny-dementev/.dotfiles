@@ -61,6 +61,7 @@ set ruler
 
 set cursorline
 set nobackup
+set nowritebackup
 set noswapfile
 
 " ======== folding ===========
@@ -95,6 +96,7 @@ set wildignore+=*/node_modules
 call neomake#configure#automake('nrwi', 500)
 
 " autowrite all modifed files always
+autocmd InsertLeave * silent! update
 au BufLeave * silent! wall
 set autowriteall
 
