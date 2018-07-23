@@ -37,6 +37,9 @@ Plug 'prettier/vim-prettier', {
 " Syntax checker (eslint)
 Plug 'neomake/neomake'
 
+" Comments toggle
+Plug 'tomtom/tcomment_vim'
+
 " Move line up/down
 Plug 'matze/vim-move'
 
