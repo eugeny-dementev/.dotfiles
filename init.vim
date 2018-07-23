@@ -120,3 +120,6 @@ let g:prettier#config#bracket_spacing = 'true'
 
 " change vim-move key
 let g:move_key_modifier = 'C'
+
+" mouse scroll
+set mouse=a " always
