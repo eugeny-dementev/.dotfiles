@@ -19,10 +19,17 @@ Plug 'editorconfig/editorconfig-vim' " editor config B)
 
 " language syntax pack 70+
 Plug 'sheerun/vim-polyglot' " js, jsx, coffee, cjsx, ...
+Plug 'flowtype/vim-flow', {
+  \ 'autoload': {
+  \   'filetypes': 'javascript'
+  \ },
+  \ 'build': {
+  \   'mac': 'npm install -g flow-bin'
+  \ }}
+  let g:flow#flowpath = '$(npm bin)/flow'
 
 " javascript improvements
-" Plug 'othree/yajs.vim'
-Plug 'othree/javascript-libraries-syntax.vim'
+Plug 'mvolkmann/vim-js-arrow-function' " convert anonymous function to arrow function
 
 " File navigation
 Plug 'wincent/command-t', {
@@ -32,7 +39,24 @@ Plug 'wincent/command-t', {
 " Auto code style formatter
 Plug 'prettier/vim-prettier', {
   \ 'do': 'npm install',
-  \ 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue', 'jsx'] }
+  \ 'branch': 'release/1.x',
+  \ 'for': [
+    \ 'javascript',
+    \ 'typescript',
+    \ 'css',
+    \ 'less',
+    \ 'scss',
+    \ 'json',
+    \ 'graphql',
+    \ 'markdown',
+    \ 'vue',
+    \ 'lua',
+    \ 'php',
+    \ 'python',
+    \ 'ruby',
+    \ 'html',
+    \ 'handlebars',
+    \ 'swift' ] }
 
 " Syntax checker (eslint)
 Plug 'neomake/neomake'
@@ -116,10 +140,23 @@ let g:prettier#exec_cmd_async = 1
 let g:prettier#config#single_quote = 'true'
 let g:prettier#config#arrow_parens = 'always'
 let g:prettier#config#trailing_comma = 'es5'
-let g:prettier#config#bracket_spacing = 'true'
 
 " change vim-move key
 let g:move_key_modifier = 'C'
 
 " mouse scroll
 set mouse=a " always
+
+" use locally installed flow
+let local_flow = finddir('node_modules', '.;') . '/.bin/flow'
+if matchstr(local_flow, "^\/\\w") == ''
+    let local_flow= getcwd() . "/" . local_flow
+endif
+if executable(local_flow)
+  let g:flow#flowpath = local_flow
+endif
+
+let g:javascript_plugin_flow = 1
+
+" remove tralling whitespaces on save
+autocmd FileType c,cpp,java,php,js,jsx,ts,py,rs,md autocmd BufWritePre <buffer> %s/\s\+$//e
