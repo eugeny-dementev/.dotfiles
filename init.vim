@@ -11,25 +11,12 @@ Plug 'eugeny-dementev/gruvbox'
 Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-fugitive'
 
-" Rust autocomplete
-Plug 'racer-rust/vim-racer'
-
 " code style
 Plug 'editorconfig/editorconfig-vim' " editor config B)
 
 " language syntax pack 70+
 Plug 'sheerun/vim-polyglot' " js, jsx, coffee, cjsx, ...
-Plug 'flowtype/vim-flow', {
-  \ 'autoload': {
-  \   'filetypes': 'javascript'
-  \ },
-  \ 'build': {
-  \   'mac': 'npm install -g flow-bin'
-  \ }}
-  let g:flow#flowpath = '$(npm bin)/flow'
-
-" javascript improvements
-Plug 'mvolkmann/vim-js-arrow-function' " convert anonymous function to arrow function
+Plug 'HerringtonDarkholme/yats.vim' " ts
 
 " File navigation
 Plug 'wincent/command-t', {
@@ -58,6 +45,9 @@ Plug 'prettier/vim-prettier', {
     \ 'handlebars',
     \ 'swift' ] }
 
+" Typescript autocomplete
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+
 " Syntax checker (eslint)
 Plug 'neomake/neomake'
 
@@ -66,9 +56,6 @@ Plug 'tomtom/tcomment_vim'
 
 " Move line up/down
 Plug 'matze/vim-move'
-
-" Emment for html
-Plug 'mattn/emmet-vim'
 
 call plug#end()
 
@@ -127,15 +114,7 @@ set autowriteall
 " autoread file changes outside of vim
 set autoread
 
-" rust autocomplete
-set hidden
-let g:racer_cmd = "~/.cargo/bin/racer"
-let g:racer_experimental_completer = 1
-
-" rust lang configurations
-au FileType rust nmap gd <Plug>(rust-def-split)
-
-" prettier configuration
+" ======== prettier ==============
 let g:prettier#exec_cmd_async = 1
 let g:prettier#config#single_quote = 'true'
 let g:prettier#config#arrow_parens = 'always'
@@ -147,16 +126,21 @@ let g:move_key_modifier = 'C'
 " mouse scroll
 set mouse=a " always
 
-" use locally installed flow
-let local_flow = finddir('node_modules', '.;') . '/.bin/flow'
-if matchstr(local_flow, "^\/\\w") == ''
-    let local_flow= getcwd() . "/" . local_flow
-endif
-if executable(local_flow)
-  let g:flow#flowpath = local_flow
-endif
-
-let g:javascript_plugin_flow = 1
-
 " remove tralling whitespaces on save
 autocmd FileType c,cpp,java,php,js,jsx,ts,py,rs,md autocmd BufWritePre <buffer> %s/\s\+$//e
+
+" ========= coc ============
+let g:coc_global_extensions = [ 'coc-tsserver' ]
+inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm() : "\<C-g>u\<CR>"
+inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+" goto code navigation.
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+" remap keys for applying show fixes codeAction to the current line
+nmap <leader>sf  <Plug>(coc-codeaction)
+" remap keys for applying refactoring to the current cursor position
+nmap <leader>lr  <Plug>(coc-refactor)
