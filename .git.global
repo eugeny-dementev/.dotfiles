@@ -1,0 +1,10 @@
+[core]
+  autocrlf = input
+  ignorecase = fasle
+[push]
+  default = current
+[alias]
+  up = fetch -p
+  drop = !git checkout . && git clean -df
+[pull]
+  rebase = false
