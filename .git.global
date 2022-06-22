@@ -1,6 +1,6 @@
 [core]
   autocrlf = input
-  ignorecase = fasle
+  ignorecase = false
 [push]
   default = current
 [alias]
